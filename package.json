@@ -50,7 +50,7 @@
     "cmdk": "^0.1.21",
     "formidable": "^2.1.1",
     "framer-motion": "^10.10.0",
-    "langchain": "0.0.96",
+    "langchain": "0.0.97",
     "lucide-react": "0.129.0",
     "mammoth": "^1.5.1",
     "next": "^13.2.4",

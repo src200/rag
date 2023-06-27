@@ -1,5 +1,5 @@
 import { CallbackManager } from "langchain/callbacks"
-import { ChatVectorDBQAChain, LLMChain, loadQAChain } from "langchain/chains"
+import { ConversationalRetrievalQAChain, LLMChain, loadQAChain } from "langchain/chains"
 import { OpenAIChat } from "langchain/llms/openai"
 import { PineconeStore } from "langchain/vectorstores/pinecone"
 import { IMPROVED_QA_PROMPT, OPTIMIZED_CONDENSE_PROMPT } from "@/lib/prompts"
@@ -13,6 +13,7 @@ export const makePdfChain = (
     llm: new OpenAIChat({ temperature: 0 }),
     prompt: OPTIMIZED_CONDENSE_PROMPT,
   })
+
   const docChain = loadQAChain(
     new OpenAIChat({
       temperature: 0,
@@ -26,14 +27,14 @@ export const makePdfChain = (
           })
         : undefined,
     }),
-    { prompt: IMPROVED_QA_PROMPT }
+    { type: 'stuff',prompt: IMPROVED_QA_PROMPT }
   )
 
-  return new ChatVectorDBQAChain({
-    vectorstore,
+
+  return new ConversationalRetrievalQAChain({
+    retriever: vectorstore.asRetriever(!!sourceCount ? sourceCount : 2),
     combineDocumentsChain: docChain,
     questionGeneratorChain: questionGenerator,
-    returnSourceDocuments: true,
-    k: !!sourceCount ? sourceCount : 2, //number of source documents to return
+    returnSourceDocuments: true
   })
 }

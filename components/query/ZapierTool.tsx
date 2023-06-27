@@ -118,14 +118,14 @@ export function ZapierTool({ namespace }) {
                         layout
                         className="flex w-full max-w-4xl flex-col items-center justify-center "
                     >
-                       
+
                         <SearchInput
                             status={status}
                             value={userQuestion}
                             handleClick={handleSubmit}
                             handleChange={handleChange}
                             loading={status === "loading" || status === "streaming"}
-                            placeholder="Query knowledge base"
+                            placeholder="Query to invoke tools"
                         />
                     </motion.div>
                 </div>

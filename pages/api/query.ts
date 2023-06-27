@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import { OpenAIEmbeddings } from "langchain/embeddings"
-import { PineconeStore } from "langchain/vectorstores"
+import { OpenAIEmbeddings } from "langchain/embeddings/openai"
+import { PineconeStore } from "langchain/vectorstores/pinecone"
 import { initPinecone } from "@/config/pinecone"
 import { makePdfChain } from "@/lib/chain"
 
@@ -59,12 +59,12 @@ async function createChainAndSendResponse(
     sendData(JSON.stringify({ data: token }))
   })
 
+  console.log(history.flat().join(','))
   try {
     const response = await chain.call({
       question: sanitizedQuestion,
-      chat_history: history || [],
+      chat_history: history ? history.flat().join(',') : [],
     })
-
     sendData(JSON.stringify({ sourceDocs: response.sourceDocuments }))
   } catch (error) {
     console.error("error", error)

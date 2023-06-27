@@ -102,8 +102,7 @@ export function useZapierNLA(namespace): FileChatHook {
                         ctrl.abort()
                     } else {
                         const data = JSON.parse(event.data)
-                        console.log(data)
-                        if (data.sourceDocs) {
+                         if (data.sourceDocs) {
                             setMessageState((state) => ({
                                 ...state,
                                 pendingSourceDocs: data.sourceDocs,
