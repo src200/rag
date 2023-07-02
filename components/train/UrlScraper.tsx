@@ -60,7 +60,7 @@ function UrlScraper({ namespace }: Props) {
     <div className="flex h-48 flex-col items-center justify-between ">
       <div className="mt-8 w-80">
         <Input
-          placeholder="https://react.dev/"
+          placeholder="https://yourwebsite.com/"
           value={urls.join("\n")}
           onChange={handleChange}
           className="w-full"

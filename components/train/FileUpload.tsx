@@ -69,8 +69,6 @@ export function FileUpload({ namespace }) {
       "application/msword": [".doc"],
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
         [".docx"],
-      "image/jpeg": [".jpeg", ".jpg"],
-      "image/png": [".png"],
       "text/html": [".html"],
     },
     multiple: false,
@@ -104,7 +102,7 @@ export function FileUpload({ namespace }) {
                 <p className="flex-wrap px-6 text-center">
                   Supports
                   <br />
-                  .txt .pdf .docx .md .png .jpg .html
+                  .txt .pdf .docx .md .html
                 </p>
               )}
             </div>
