@@ -1,17 +1,10 @@
 import { useCallback, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { cn } from "@/lib/utils"
-import { Card } from "@/components/Card"
 import {
   BackgroundGridPattern,
   PageLayout,
 } from "@/components/Layouts"
-import { NamespaceSelector } from "@/components/NamespaceInput"
-import { DocumentQA } from "@/components/query/DocumentQA"
-import { ZapierTool } from "@/components/query/ZapierTool"
-import { FileUpload } from "@/components/train/FileUpload"
-import { UrlScraper } from "@/components/train/UrlScraper"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
 function ToggleHeading({ text, embedding }) {
   const activeHeading = text == embedding
@@ -58,86 +51,13 @@ export default function Pinecone() {
       <div className="flex flex-col items-center gap-3 px-3">
         <div className="z-30 my-16 flex flex-col items-center">
           <AnimatePresence mode="wait">
-            <Tabs className="p-5" defaultValue="tab1">
-              <TabsList aria-label="Infernix offerings">
-                <TabsTrigger value="tab1">
-                  Train
-                </TabsTrigger>
-                <TabsTrigger value="tab2">
-                  Query Knowledge base
-                </TabsTrigger>
-                <TabsTrigger value="tab3">
-                  Tools
-                </TabsTrigger>
-              </TabsList>
-              <TabsContent value="tab1">
-                <motion.div
-                  key={"TRAIN"}
-                  className="flex w-full flex-col items-center"
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  variants={fadeIn}
-                >
-                  <div className="flex flex-col items-center justify-between md:mt-6 md:flex-row md:items-start ">
-                    <div className="  pt-4 md:mx-4 md:mt-0 md:max-w-2xl">
-                      <div className="  w-full">
-                        <Card
-                          cardDetails={{
-                            name: "Upload",
-                            description:
-                              "Upload your documents to create embeddings",
-                          }}
-                        >
-                          <FileUpload namespace={namespace} />
-                        </Card>
-                      </div>
-                    </div>
-
-                    <div className=" pt-4 md:mx-4 md:mt-0 md:max-w-2xl">
-                      <div className=" w-full">
-                        <Card
-                          cardDetails={{
-                            name: "Scrape",
-                            description: "Scrape URLs to generate embeddings",
-                          }}
-                        >
-                          <UrlScraper namespace={namespace} />
-                        </Card>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </TabsContent>
-              <TabsContent value="tab2">
-                <div className=" flex w-full flex-col items-center ">
-                  <p className="mb-3 mt-2 max-w-lg text-center text-neutral-800 dark:text-neutral-200 md:text-lg">
-                    <b>Query</b> the embedded knowledge provided by you.
-                   
-                  </p>
-                  <DocumentQA namespace={namespace} />
-                </div>
-              </TabsContent>
-              <TabsContent value="tab3">
-                <div className=" flex w-full flex-col items-center ">
-                  <p className="mb-3 mt-2 max-w-lg text-center text-neutral-800 dark:text-neutral-200 md:text-lg">
-                    <b>Execute</b> the following examples.
-                  </p>
-                  <p className="mb-3 mt-1 text-center text-sm text-neutral-800 dark:text-neutral-200">
-                    Craft an email applying for sick leave and send it to <b>your_email</b>
-                  </p>
-                  <p className="mb-3 mt-1 text-center text-sm text-neutral-800 dark:text-neutral-200">
-                    Create a Google meet with <b>your_email</b> tomorrow early in the morning
-                  </p>
-                  <p className="mb-3 mt-1 text-center text-sm text-neutral-800 dark:text-neutral-200">
-                    Summarize last email and send a slack message on #mvp channel
-                  </p>
-                  <div className="mt-6">
-                    <ZapierTool namespace={namespace} />
-                  </div>
-                </div>
-              </TabsContent>
-            </Tabs>
+            <motion.div initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={fadeIn}>
+                <h3 className="p-5 font-aboreto text-6xl font-semibold">Generative AI for customer support</h3>
+                <p className="p-5 text-xl">Meet <span className="font-bold">Infernix AI</span> helping support teams easily cut costs while providing top-tier service in every customer interaction.</p>
+              </motion.div>
           </AnimatePresence>
           <div className="absolute inset-0 -z-10 overflow-hidden ">
             <BackgroundGridPattern />

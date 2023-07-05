@@ -31,7 +31,7 @@ export const Card = ({
         }
       )}
     >
-      <h2 className="flex-none px-4 text-xl font-semibold text-neutral-900 dark:text-white md:px-8 md:text-3xl">
+      <h2 className="flex-none px-4 text-lg font-semibold text-neutral-900 dark:text-white md:px-8 md:text-3xl">
         {cardDetails.name}
       </h2>
       <div className=" px-4 md:px-8">

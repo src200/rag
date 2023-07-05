@@ -19,7 +19,9 @@ function PageLayout({ children }: LayoutProps) {
   return (
     <>
       <NavHeader />
-      <div>{children}</div>
+      <div className="grid h-[90vh] place-items-center">
+        <div className="mx-0 my-auto inline-block">{children}</div>
+      </div>
     </>
   )
 }

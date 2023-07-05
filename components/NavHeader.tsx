@@ -30,14 +30,23 @@ interface NavItemsProps {
 
 function NavItems({ items }: NavItemsProps) {
   return (
-    <div className="flex gap-6 md:gap-10">
-      <Link href="/" className=" flex items-center space-x-2">
+    <div className="flex items-center gap-6 md:gap-10">
+      <Link href="/" className="flex items-center space-x-2">
         <div className="md:h-13 relative h-8 w-10">
           {/* <Image fill className="absolute" src="/logo-og.svg" alt="logo" /> */}
         </div>
-        <span className="hidden font-aboreto font-bold sm:inline-block">
+        <span className="font-aboreto text-2xl font-bold sm:inline-block">
           {siteConfig.name}
         </span>
+      </Link>
+      <Link href="/train">
+          Train
+      </Link>
+      <Link href="/query">
+          Query
+      </Link>
+      <Link href="/tools">
+          Tools
       </Link>
     </div>
   )
