@@ -32,12 +32,9 @@ function NavItems({ items }: NavItemsProps) {
   return (
     <div className="flex items-center gap-6 md:gap-10">
       <Link href="/" className="flex items-center space-x-2">
-        <div className="md:h-13 relative h-8 w-10">
-          {/* <Image fill className="absolute" src="/logo-og.svg" alt="logo" /> */}
+        <div className="md:h-13 relative h-[3rem] w-[12rem]">
+          <Image fill className="absolute" src="/infernix.png" alt="logo" />
         </div>
-        <span className="font-aboreto text-2xl font-bold sm:inline-block">
-          {siteConfig.name}
-        </span>
       </Link>
       <Link href="/train">
           Train
