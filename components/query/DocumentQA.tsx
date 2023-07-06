@@ -123,7 +123,7 @@ export function DocumentQA({ namespace }) {
               handleClick={handleSubmit}
               handleChange={handleChange}
               loading={status === "loading" || status === "streaming"}
-              placeholder="Query knowledge base"
+              placeholder="How can I help?"
             />
           </motion.div>
         </div>

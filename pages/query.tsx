@@ -28,8 +28,7 @@ export default function Query() {
                     exit="exit"
                     variants={fadeIn}>
                     <p className="mb-3 mt-2 max-w-lg text-center text-neutral-800 dark:text-neutral-200 md:text-lg">
-                        <b>Query</b> the embedded knowledge provided by you.
-
+                        Get expert help instantly.
                     </p>
                     <DocumentQA namespace={namespace} />
                 </motion.div>
