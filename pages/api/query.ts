@@ -5,6 +5,7 @@ import { initPinecone } from "@/config/pinecone"
 import { makePdfChain } from "@/lib/chain"
 
 function prepareResponse(res: NextApiResponse) {
+ 
   res.writeHead(200, {
     "Content-Type": "text/event-stream",
     "Cache-Control": "no-cache, no-transform",
@@ -16,28 +17,35 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { namespace } = req.headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, namespace');
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+  } else {
+    const { namespace } = req.headers
 
-  if (!req.body.question) {
-    return res.status(400).json({ message: "No question in the request" })
-  }
-
-  const pinecone = await initPinecone()
-  const index = pinecone.Index(process.env.PINECONE_INDEX_NAME)
-  const namespaceConfig = !!namespace ? namespace : "default-namespace"
-
-  const vectorStore = await PineconeStore.fromExistingIndex(
-    new OpenAIEmbeddings({}),
-    {
-      pineconeIndex: index,
-      textKey: "text",
-      // @ts-ignore
-      namespace: namespaceConfig,
+    if (!req.body.question) {
+      return res.status(400).json({ message: "No question in the request" })
     }
-  )
 
-  prepareResponse(res)
-  await createChainAndSendResponse(req, res, vectorStore)
+    const pinecone = await initPinecone()
+    const index = pinecone.Index(process.env.PINECONE_INDEX_NAME)
+    const namespaceConfig = !!namespace ? namespace : "default-namespace"
+
+    const vectorStore = await PineconeStore.fromExistingIndex(
+      new OpenAIEmbeddings({}),
+      {
+        pineconeIndex: index,
+        textKey: "text",
+        // @ts-ignore
+        namespace: namespaceConfig,
+      }
+    )
+
+    prepareResponse(res)
+    await createChainAndSendResponse(req, res, vectorStore)
+  }
 }
 
 async function createChainAndSendResponse(
