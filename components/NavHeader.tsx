@@ -9,13 +9,13 @@ import { ThemeToggle } from "@/components/Layouts"
 export function NavHeader() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-mauve-7 backdrop-blur">
-      <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
+      <div className="container flex h-16 items-center justify-between space-x-4">
         <NavItems items={siteConfig.mainNav} />
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        {/* <div className="flex items-center space-x-4">
           <nav className="flex items-center space-x-1">
             <ThemeToggle />
           </nav>
-        </div>
+        </div> */}
       </div>
     </header>
   )
@@ -26,26 +26,38 @@ interface NavItemsProps {
 }
 
 function NavItems({ items }: NavItemsProps) {
-  let { theme } = useTheme()
+  const { theme } = useTheme()
+  const [logoSrc, setLogoSrc] = React.useState('/infernix-logo.svg')
+  
+
+  React.useEffect(() => {
+    setLogoSrc(theme === 'light' ? "/infernix-logo.svg" : "/infernix-logo-dark.svg")
+  },[theme])
+
   return (
-    <div className="flex items-center gap-6 md:gap-10">
-      <Link href="/" className="flex items-center space-x-2">
-        <Image
-          className="mt-3"
-          src={theme === 'dark' ? "/infernix-logo-dark.svg" : "/infernix-logo.svg"}
-          alt="logo"
-          width={200}
-          height={100} />
-      </Link>
-      <Link href="/train">
-          Train
-      </Link>
-      <Link href="/query">
-          Support
-      </Link>
-      <Link href="/tools">
-          Tools
-      </Link>
+    <div className="flex w-full items-center  justify-between gap-6">
+      <div>
+        <Link href="/" className="mt-3 flex items-center space-x-2">
+          <Image
+            style={{position:'relative'}}
+            width={200}
+            height={80}
+            src={logoSrc}
+            alt="logo" />
+        </Link>
+      </div>
+      <div className="flex items-center gap-20">
+        <Link href="/train">
+            Train
+        </Link>
+        <Link href="/query">
+            Support
+        </Link>
+        <Link href="/tools">
+            Tools
+        </Link>
+      </div>
+      <ThemeToggle />
     </div>
   )
 }
