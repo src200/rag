@@ -36,16 +36,6 @@ function NavItems({ items }: NavItemsProps) {
 
   return (
     <div className="flex w-full items-center  justify-between gap-6">
-      <div>
-        <Link href="/" className="mt-3 flex items-center space-x-2">
-          <Image
-            style={{position:'relative'}}
-            width={200}
-            height={80}
-            src={logoSrc}
-            alt="logo" />
-        </Link>
-      </div>
       <div className="flex items-center gap-20">
         <Link href="/train">
             Train
